@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:ffdec="https://www.free-decompiler.com/flash" xmlns:xlink="http://www.w3.org/1999/xlink" ffdec:objectType="frame" height="30.1px" width="30.0px" xmlns="http://www.w3.org/2000/svg">
+  <g transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)">
+    <use ffdec:characterId="1" height="30.0" transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)" width="30.0" xlink:href="#shape0"/>
+    <use ffdec:characterId="5" height="30.0" transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.1)" width="30.0" xlink:href="#sprite0"/>
+  </g>
+  <defs>
+    <g id="shape0" transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)">
+      <path d="M0.0 0.0 L30.0 0.0 30.0 30.0 0.0 30.0 0.0 0.0" fill="#33cc66" fill-opacity="0.0" fill-rule="evenodd" stroke="none"/>
+    </g>
+    <g id="sprite0" transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)">
+      <use ffdec:characterId="2" height="30.0" transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)" width="30.0" xlink:href="#shape1"/>
+      <filter id="filter0">
+        <feColorMatrix in="SourceGraphic" result="filterResult0" type="matrix" values="0 0 0 0 1.0,0 0 0 0 1.0,0 0 0 0 1.0,0 0 0 1 0"/>
+        <feConvolveMatrix divisor="25.0" in="filterResult0" kernelMatrix="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" order="5 5" result="filterResult1"/>
+        <feComposite in="SourceGraphic" in2="filterResult1" operator="over" result="filterResult2"/>
+      </filter>
+      <use ffdec:characterId="4" filter="url(#filter0)" height="71.65" transform="matrix(0.3961, 0.0, 0.0, 0.3961, 0.6787, 0.6385)" width="71.65" xlink:href="#sprite1"/>
+    </g>
+    <g id="shape1" transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)">
+      <path d="M27.95 0.15 Q30.0 0.7 30.0 3.3 L30.0 26.7 29.8 28.15 Q29.15 30.0 26.7 30.0 L3.3 30.0 2.4 29.95 Q0.7 29.65 0.2 28.15 L0.0 26.7 0.0 3.3 Q0.0 0.7 2.05 0.15 L2.4 0.1 3.3 0.0 26.7 0.0 27.95 0.15" fill="#cccccc" fill-rule="evenodd" stroke="none"/>
+    </g>
+    <g id="sprite1" transform="matrix(1.0, 0.0, 0.0, 1.0, 9.9, 12.4)">
+      <use ffdec:characterId="3" height="71.65" transform="matrix(1.0, 0.0, 0.0, 1.0, -9.9, -12.4)" width="71.65" xlink:href="#shape2"/>
+    </g>
+    <g id="shape2" transform="matrix(1.0, 0.0, 0.0, 1.0, 9.9, 12.4)">
+      <path d="M61.75 23.4 Q61.75 38.25 51.25 48.75 40.85 59.25 25.95 59.25 11.05 59.25 0.55 48.75 -9.9 38.25 -9.9 23.35 -9.9 8.5 0.55 -1.95 11.05 -12.4 25.95 -12.4 40.85 -12.4 51.25 -1.95 61.75 8.5 61.75 23.4" fill="#c80a14" fill-rule="evenodd" stroke="none"/>
+      <path d="M54.95 23.35 Q54.95 35.4 46.45 43.95 37.95 52.45 25.9 52.45 13.8 52.45 5.3 43.95 -3.2 35.4 -3.2 23.35 -3.2 11.3 5.3 2.75 13.8 -5.7 25.9 -5.7 37.95 -5.7 46.45 2.75 54.95 11.3 54.95 23.35" fill="#ffffff" fill-rule="evenodd" stroke="none"/>
+      <path d="M49.05 23.4 Q49.05 33.0 42.25 39.8 35.5 46.55 25.9 46.55 16.25 46.55 9.5 39.8 2.75 33.0 2.75 23.4 2.75 13.8 9.5 7.0 16.25 0.25 25.9 0.25 35.5 0.25 42.25 7.0 49.05 13.8 49.05 23.4" fill="#c80a14" fill-rule="evenodd" stroke="none"/>
+      <path d="M42.8 23.4 Q42.8 30.4 37.85 35.35 32.95 40.3 25.9 40.3 18.9 40.3 13.95 35.35 9.05 30.4 9.05 23.4 9.05 16.4 13.95 11.45 18.9 6.55 25.9 6.55 32.95 6.55 37.85 11.45 42.8 16.4 42.8 23.4" fill="#ffffff" fill-rule="evenodd" stroke="none"/>
+      <path d="M35.25 23.4 Q35.25 27.25 32.55 30.0 29.8 32.7 25.95 32.7 22.05 32.7 19.3 30.0 16.6 27.25 16.6 23.35 16.6 19.5 19.3 16.75 22.05 14.05 25.95 14.05 29.8 14.05 32.55 16.75 35.25 19.5 35.25 23.4" fill="#c80a14" fill-rule="evenodd" stroke="none"/>
+      <path d="M33.05 23.4 Q33.05 26.35 31.0 28.4 28.9 30.5 25.95 30.5 23.0 30.5 20.9 28.4 18.8 26.35 18.8 23.35 18.8 20.4 20.9 18.35 23.0 16.25 25.95 16.25 28.9 16.25 31.0 18.35 33.05 20.4 33.05 23.4" fill="#ffff00" fill-rule="evenodd" stroke="none"/>
+    </g>
+  </defs>
+</svg>

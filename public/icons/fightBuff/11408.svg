@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:ffdec="https://www.free-decompiler.com/flash" xmlns:xlink="http://www.w3.org/1999/xlink" ffdec:objectType="frame" height="30.0px" width="30.0px" xmlns="http://www.w3.org/2000/svg">
+  <g transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)">
+    <use ffdec:characterId="1" height="30.0" transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)" width="30.0" xlink:href="#shape0"/>
+    <use ffdec:characterId="13" height="30.0" transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)" width="30.0" xlink:href="#sprite0"/>
+  </g>
+  <defs>
+    <g id="shape0" transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)">
+      <path d="M0.0 0.0 L30.0 0.0 30.0 30.0 0.0 30.0 0.0 0.0" fill="#33cc66" fill-opacity="0.0" fill-rule="evenodd" stroke="none"/>
+    </g>
+    <g id="sprite0" transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.1)">
+      <use ffdec:characterId="2" height="30.0" transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, -0.1)" width="30.0" xlink:href="#shape1"/>
+      <use ffdec:characterId="12" height="209.25" transform="matrix(0.1009, -0.021, 0.021, 0.1009, 1.1026, 6.5762)" width="216.6" xlink:href="#sprite1"/>
+    </g>
+    <g id="shape1" transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.1)">
+      <path d="M3.3 -0.1 L26.7 -0.1 Q30.0 -0.1 30.0 3.2 L30.0 26.6 Q30.0 29.9 26.7 29.9 L3.3 29.9 Q0.0 29.9 0.0 26.6 L0.0 3.2 Q0.0 -0.1 3.3 -0.1" fill="#000033" fill-rule="evenodd" stroke="none"/>
+    </g>
+    <g id="sprite1" transform="matrix(1.0, 0.0, 0.0, 1.0, 33.2, -9.7)">
+      <use ffdec:characterId="11" height="787.95" transform="matrix(0.2655, 0.0, 0.0, 0.2655, -33.2, 9.7)" width="815.7" xlink:href="#sprite2"/>
+    </g>
+    <g id="sprite2" transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)">
+      <filter id="filter0">
+        <feConvolveMatrix divisor="16.0" in="SourceGraphic" kernelMatrix="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" order="4 4" result="filterResult0"/>
+        <feColorMatrix in="filterResult0" result="filterResult1" type="matrix" values="0 0 0 0 1.0,0 0 0 0 1.0,0 0 0 0 0.0,0 0 0 1 0"/>
+        <feConvolveMatrix divisor="25.0" in="filterResult1" kernelMatrix="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" order="5 5" result="filterResult2"/>
+        <feComposite in="filterResult0" in2="filterResult2" operator="over" result="filterResult3"/>
+        <feColorMatrix in="filterResult3" result="filterResult4" type="matrix" values="0 0 0 0 1.0,0 0 0 0 0.0,0 0 0 0 0.0,0 0 0 1 0"/>
+        <feConvolveMatrix divisor="81.0" in="filterResult4" kernelMatrix="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" order="9 9" result="filterResult5"/>
+        <feComposite in="filterResult3" in2="filterResult5" operator="over" result="filterResult6"/>
+      </filter>
+      <use ffdec:characterId="4" filter="url(#filter0)" height="386.1" transform="matrix(-1.4893, 0.0, 0.0, 1.4893, 731.5, 133.45)" width="158.05" xlink:href="#sprite3"/>
+      <filter id="filter1">
+        <feColorMatrix in="SourceGraphic" result="filterResult7" type="matrix" values="0 0 0 0 1.0,0 0 0 0 1.0,0 0 0 0 0.0,0 0 0 1 0"/>
+        <feConvolveMatrix divisor="25.0" in="filterResult7" kernelMatrix="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" order="5 5" result="filterResult8"/>
+        <feComposite in="SourceGraphic" in2="filterResult8" operator="over" result="filterResult9"/>
+        <feConvolveMatrix divisor="4.0" in="filterResult9" kernelMatrix="1 1 1 1" order="2 2" result="filterResult10"/>
+        <feColorMatrix in="filterResult10" result="filterResult11" type="matrix" values="0 0 0 0 1.0,0 0 0 0 0.0,0 0 0 0 0.0,0 0 0 1 0"/>
+        <feConvolveMatrix divisor="49.0" in="filterResult11" kernelMatrix="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" order="7 7" result="filterResult12"/>
+        <feComposite in="filterResult10" in2="filterResult12" operator="over" result="filterResult13"/>
+      </filter>
+      <use ffdec:characterId="6" filter="url(#filter1)" height="273.0" transform="matrix(-0.6425, -0.2188, -0.2435, 0.7008, 674.05, 71.95)" width="99.8" xlink:href="#sprite4"/>
+      <filter id="filter2">
+        <feColorMatrix in="SourceGraphic" result="filterResult14" type="matrix" values="0 0 0 0 1.0,0 0 0 0 1.0,0 0 0 0 0.0,0 0 0 1 0"/>
+        <feConvolveMatrix divisor="25.0" in="filterResult14" kernelMatrix="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" order="5 5" result="filterResult15"/>
+        <feComposite in="SourceGraphic" in2="filterResult15" operator="over" result="filterResult16"/>
+        <feConvolveMatrix divisor="4.0" in="filterResult16" kernelMatrix="1 1 1 1" order="2 2" result="filterResult17"/>
+        <feColorMatrix in="filterResult17" result="filterResult18" type="matrix" values="0 0 0 0 1.0,0 0 0 0 0.0,0 0 0 0 0.0,0 0 0 1 0"/>
+        <feConvolveMatrix divisor="49.0" in="filterResult18" kernelMatrix="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" order="7 7" result="filterResult19"/>
+        <feComposite in="filterResult17" in2="filterResult19" operator="over" result="filterResult20"/>
+      </filter>
+      <use ffdec:characterId="6" filter="url(#filter2)" height="273.0" transform="matrix(-0.3723, -0.4482, -0.4921, 0.404, 815.7, 283.2)" width="99.8" xlink:href="#sprite4"/>
+      <filter id="filter3">
+        <feColorMatrix in="SourceGraphic" result="filterResult21" type="matrix" values="0 0 0 0 1.0,0 0 0 0 1.0,0 0 0 0 0.0,0 0 0 1 0"/>
+        <feConvolveMatrix divisor="25.0" in="filterResult21" kernelMatrix="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" order="5 5" result="filterResult22"/>
+        <feComposite in="SourceGraphic" in2="filterResult22" operator="over" result="filterResult23"/>
+        <feConvolveMatrix divisor="4.0" in="filterResult23" kernelMatrix="1 1 1 1" order="2 2" result="filterResult24"/>
+        <feColorMatrix in="filterResult24" result="filterResult25" type="matrix" values="0 0 0 0 1.0,0 0 0 0 0.0,0 0 0 0 0.0,0 0 0 1 0"/>
+        <feConvolveMatrix divisor="49.0" in="filterResult25" kernelMatrix="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" order="7 7" result="filterResult26"/>
+        <feComposite in="filterResult24" in2="filterResult26" operator="over" result="filterResult27"/>
+      </filter>
+      <use ffdec:characterId="6" filter="url(#filter3)" height="273.0" transform="matrix(0.1161, -0.5019, -0.5478, -0.1303, 803.6, 569.0)" width="99.8" xlink:href="#sprite4"/>
+      <clipPath id="clipPath0" transform="matrix(2.6551, 0.0, 0.0, 2.6551, 655.85, 379.3)">
+        <path d="M-8.2 -119.7 L-27.7 -77.15 -34.7 -70.75 -31.0 -66.45 -28.75 -49.95 -18.7 -61.85 -12.75 -64.3 -14.55 -73.55 -6.85 -118.6 Q-7.05 -119.65 -8.2 -119.7 M-9.5 -119.65 Q-7.45 -121.6 -5.85 -119.45 L-13.45 -73.9 -11.3 -63.55 -18.1 -60.95 -29.5 -47.55 -29.55 -47.65 -32.3 -66.65 -35.7 -70.95 -29.4 -77.0 -9.5 -119.65 M-24.8 -77.75 L-24.7 -78.1 -12.2 -104.1 -16.9 -74.7 -15.8 -65.5 -15.95 -65.4 -21.65 -63.35 -27.35 -55.1 -28.05 -65.55 -31.95 -70.2 -24.8 -77.75 M-26.55 -58.0 L-21.9 -64.2 -16.95 -65.95 -18.15 -75.2 -13.45 -99.85 -23.65 -77.55 -30.5 -70.1 -26.95 -65.7 -26.55 -58.0" fill="url(#gradient1)" fill-rule="evenodd" stroke="none"/>
+        <path d="M15.95 -18.75 Q17.4 -19.95 19.05 -20.05 20.15 -20.15 20.85 -19.7 L24.15 -23.25 29.05 -25.6 25.75 -21.15 21.95 -18.5 22.1 -17.8 21.95 -16.55 Q21.55 -15.05 20.1 -13.85 18.65 -12.7 17.05 -12.55 L15.75 -12.65 15.65 -12.7 15.6 -12.75 15.55 -12.75 14.05 -12.1 12.75 -11.6 13.8 -13.15 14.25 -14.0 Q13.85 -14.85 14.15 -16.05 14.5 -17.45 15.75 -18.6 L15.95 -18.75 M19.3 -17.95 L18.55 -18.05 Q17.85 -18.0 17.25 -17.55 16.65 -17.05 16.5 -16.4 16.3 -15.75 16.65 -15.35 17.0 -14.9 17.7 -14.95 18.35 -15.0 18.95 -15.5 19.55 -15.95 19.75 -16.6 19.9 -17.25 19.55 -17.7 L19.3 -17.95 M18.65 -18.5 L19.65 -18.3 19.9 -18.1 19.95 -18.0 Q20.45 -17.45 20.2 -16.6 19.95 -15.8 19.15 -15.15 18.4 -14.5 17.55 -14.4 16.7 -14.35 16.2 -14.9 15.75 -15.45 16.0 -16.3 16.2 -17.15 16.95 -17.8 L17.85 -18.35 18.65 -18.5 M16.5 -18.3 Q15.35 -17.4 15.1 -16.2 14.75 -15.0 15.4 -14.2 16.05 -13.4 17.3 -13.5 18.55 -13.6 19.7 -14.5 20.8 -15.45 21.1 -16.65 21.3 -17.3 21.15 -17.9 L20.75 -18.6 20.3 -19.05 18.9 -19.35 Q17.7 -19.25 16.7 -18.5 L16.5 -18.3 M12.15 -15.05 L8.0 -7.15 15.85 -10.6 21.0 -9.6 21.1 -9.55 24.4 -16.75 41.1 -36.2 Q30.45 -29.55 20.25 -22.75 L20.05 -22.6 11.4 -20.25 12.15 -15.05 M10.4 -17.1 L9.6 -21.85 17.6 -23.4 50.9 -45.85 Q51.8 -45.35 51.45 -44.4 L25.6 -14.9 22.8 -7.35 17.35 -8.2 4.65 -3.95 10.4 -17.1 M18.5 43.5 L23.85 48.35 57.45 59.75 Q57.55 60.65 56.75 60.9 L22.15 58.5 15.3 60.6 13.0 56.3 3.2 49.6 15.55 46.6 18.5 43.5 M15.05 49.0 L7.3 50.25 13.9 53.95 15.95 58.2 22.85 56.65 45.4 58.0 Q35.1 54.05 24.8 50.5 L24.6 50.45 18.25 45.65 15.05 49.0 M21.65 51.4 Q20.95 50.6 19.85 50.3 L19.65 50.25 17.45 50.4 Q16.4 50.75 16.2 51.65 15.95 52.55 16.75 53.4 17.45 54.25 18.7 54.55 L20.95 54.4 Q21.55 54.15 21.85 53.7 L22.2 53.1 22.2 52.5 Q22.15 51.9 21.65 51.4 M20.6 51.8 Q20.2 51.35 19.55 51.2 L18.35 51.3 Q17.75 51.5 17.65 51.95 17.55 52.45 17.95 52.9 18.3 53.35 19.0 53.5 L20.2 53.4 Q20.8 53.25 20.9 52.75 L20.9 52.4 20.6 51.8 M20.95 51.65 L21.35 52.45 21.3 52.8 21.3 52.85 Q21.15 53.5 20.45 53.8 L18.9 53.85 Q18.05 53.65 17.5 53.1 17.0 52.5 17.15 51.85 17.3 51.25 18.0 50.95 L19.6 50.9 20.4 51.2 20.95 51.65 M21.35 55.0 L18.45 55.15 Q16.85 54.8 15.85 53.7 L15.3 52.8 15.25 52.65 15.3 52.6 15.25 52.55 14.0 51.85 12.95 51.2 14.55 51.1 15.4 50.95 Q15.8 50.2 16.75 49.8 L19.45 49.6 19.7 49.65 Q21.3 50.05 22.25 51.1 22.9 51.85 23.0 52.55 L27.2 53.05 31.55 55.15 26.65 55.25 22.65 53.95 22.3 54.45 21.35 55.0 M-8.2 -119.7 Q-7.05 -119.65 -6.85 -118.6 L-14.55 -73.55 -12.75 -64.3 -18.7 -61.85 -28.75 -49.95 -31.0 -66.45 -34.7 -70.75 -27.7 -77.15 -8.2 -119.7 M-18.2 -79.85 L-20.45 -74.85 -19.85 -74.25 -19.25 -72.95 Q-18.7 -71.15 -19.4 -69.1 -20.1 -67.05 -21.7 -65.95 -22.35 -65.5 -22.95 -65.3 L-23.15 -65.3 -23.25 -65.3 -24.35 -63.7 -25.3 -62.45 -25.3 -64.6 -25.35 -65.7 Q-26.3 -66.3 -26.7 -67.7 -27.15 -69.35 -26.6 -71.25 L-26.5 -71.55 Q-25.8 -73.6 -24.25 -74.7 -23.2 -75.45 -22.25 -75.45 L-21.05 -80.95 -17.7 -86.3 -18.2 -79.85 M-24.8 -77.75 L-31.95 -70.2 -28.05 -65.55 -27.35 -55.1 -21.65 -63.35 -15.95 -65.4 -15.8 -65.5 -16.9 -74.7 -12.2 -104.1 -24.7 -78.1 -24.8 -77.75 M-22.4 -74.45 Q-23.2 -74.4 -24.0 -73.8 -25.05 -73.05 -25.65 -71.65 L-25.75 -71.35 Q-26.3 -69.8 -25.85 -68.4 -25.45 -67.05 -24.3 -66.65 -23.15 -66.25 -21.95 -67.1 -20.8 -67.95 -20.25 -69.5 -19.7 -71.1 -20.1 -72.5 -20.35 -73.35 -20.85 -73.8 -21.2 -74.15 -21.65 -74.3 L-22.4 -74.45 M-22.25 -72.65 L-22.7 -72.75 -23.55 -72.4 Q-24.2 -71.95 -24.5 -71.1 -24.8 -70.25 -24.55 -69.5 -24.3 -68.75 -23.7 -68.55 -23.1 -68.35 -22.5 -68.8 -21.85 -69.25 -21.55 -70.1 -21.25 -70.95 -21.5 -71.7 -21.65 -72.45 -22.25 -72.65 M-22.1 -73.2 Q-21.3 -72.95 -21.0 -71.95 -20.7 -71.0 -21.1 -69.85 -21.5 -68.8 -22.3 -68.2 -23.15 -67.6 -23.95 -67.85 -24.75 -68.1 -25.0 -69.1 -25.3 -70.1 -24.9 -71.15 L-24.3 -72.25 -23.7 -72.85 -22.6 -73.3 -22.2 -73.25 -22.1 -73.2" fill="#ffffff" fill-rule="evenodd" stroke="none"/>
+        <path d="M12.15 -15.05 L11.4 -20.25 20.05 -22.6 20.25 -22.75 Q30.45 -29.55 41.1 -36.2 L24.4 -16.75 21.1 -9.55 21.0 -9.6 15.85 -10.6 8.0 -7.15 12.15 -15.05 M9.6 -17.8 L9.0 -22.5 16.3 -24.05 50.0 -46.4 Q52.4 -46.95 52.55 -44.55 L26.55 -14.65 23.55 -6.1 17.4 -7.3 3.05 -2.5 3.05 -2.65 9.6 -17.8 M12.45 -19.5 L13.05 -14.7 9.9 -8.95 16.1 -11.3 20.5 -10.4 23.75 -17.7 38.2 -33.65 20.8 -21.9 12.45 -19.5 M10.4 -17.1 L4.65 -3.95 17.35 -8.2 22.8 -7.35 25.6 -14.9 51.45 -44.4 Q51.8 -45.35 50.9 -45.85 L17.6 -23.4 9.6 -21.85 10.4 -17.1" fill="url(#gradient2)" fill-rule="evenodd" stroke="none"/>
+        <path d="M18.5 43.5 L15.55 46.6 3.2 49.6 13.0 56.3 15.3 60.6 22.15 58.5 56.75 60.9 Q57.55 60.65 57.45 59.75 L23.85 48.35 18.5 43.5 M18.55 42.75 L23.6 47.05 57.3 58.8 Q59.0 60.2 57.45 61.6 L22.5 59.35 14.85 61.75 12.35 56.85 1.35 49.25 1.4 49.15 15.6 45.65 18.55 42.75 M15.05 49.0 L18.25 45.65 24.6 50.45 24.8 50.5 Q35.1 54.05 45.4 58.0 L22.85 56.65 15.95 58.2 13.9 53.95 7.3 50.25 15.05 49.0 M14.5 53.65 L16.2 57.25 23.1 55.65 42.1 57.35 24.5 51.35 18.3 46.75 15.25 49.75 9.5 50.6 14.5 53.65" fill="url(#gradient3)" fill-rule="evenodd" stroke="none"/>
+      </clipPath>
+      <filter id="filter4">
+        <feConvolveMatrix divisor="16.0" in="SourceGraphic" kernelMatrix="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" order="4 4" result="filterResult28"/>
+        <feColorMatrix in="filterResult28" result="filterResult29" type="matrix" values="0 0 0 0 1.0,0 0 0 0 1.0,0 0 0 0 0.0,0 0 0 1 0"/>
+        <feConvolveMatrix divisor="25.0" in="filterResult29" kernelMatrix="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" order="5 5" result="filterResult30"/>
+        <feComposite in="filterResult28" in2="filterResult30" operator="over" result="filterResult31"/>
+        <feColorMatrix in="filterResult31" result="filterResult32" type="matrix" values="0 0 0 0 1.0,0 0 0 0 0.0,0 0 0 0 0.0,0 0 0 1 0"/>
+        <feConvolveMatrix divisor="81.0" in="filterResult32" kernelMatrix="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" order="9 9" result="filterResult33"/>
+        <feComposite in="filterResult31" in2="filterResult33" operator="over" result="filterResult34"/>
+      </filter>
+      <use ffdec:characterId="9" filter="url(#filter4)" height="436.1" transform="matrix(-1.4893, 0.0, 0.0, 1.4893, 496.5, 132.35)" width="195.05" xlink:href="#sprite5"/>
+      <filter id="filter5">
+        <feColorMatrix in="SourceGraphic" result="filterResult35" type="matrix" values="0 0 0 0 1.0,0 0 0 0 1.0,0 0 0 0 0.0,0 0 0 1 0"/>
+        <feConvolveMatrix divisor="25.0" in="filterResult35" kernelMatrix="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" order="5 5" result="filterResult36"/>
+        <feComposite in="SourceGraphic" in2="filterResult36" operator="over" result="filterResult37"/>
+        <feConvolveMatrix divisor="4.0" in="filterResult37" kernelMatrix="1 1 1 1" order="2 2" result="filterResult38"/>
+        <feColorMatrix in="filterResult38" result="filterResult39" type="matrix" values="0 0 0 0 1.0,0 0 0 0 0.0,0 0 0 0 0.0,0 0 0 1 0"/>
+        <feConvolveMatrix divisor="49.0" in="filterResult39" kernelMatrix="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" order="7 7" result="filterResult40"/>
+        <feComposite in="filterResult38" in2="filterResult40" operator="over" result="filterResult41"/>
+      </filter>
+      <use ffdec:characterId="6" filter="url(#filter5)" height="273.0" transform="matrix(-0.3714, 1.263, 1.2442, 0.8182, 52.45, 73.95)" width="99.8" xlink:href="#sprite4"/>
+      <filter id="filter6">
+        <feColorMatrix in="SourceGraphic" result="filterResult42" type="matrix" values="0 0 0 0 1.0,0 0 0 0 1.0,0 0 0 0 0.0,0 0 0 1 0"/>
+        <feConvolveMatrix divisor="25.0" in="filterResult42" kernelMatrix="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" order="5 5" result="filterResult43"/>
+        <feComposite in="SourceGraphic" in2="filterResult43" operator="over" result="filterResult44"/>
+        <feConvolveMatrix divisor="4.0" in="filterResult44" kernelMatrix="1 1 1 1" order="2 2" result="filterResult45"/>
+        <feColorMatrix in="filterResult45" result="filterResult46" type="matrix" values="0 0 0 0 1.0,0 0 0 0 0.0,0 0 0 0 0.0,0 0 0 1 0"/>
+        <feConvolveMatrix divisor="49.0" in="filterResult46" kernelMatrix="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" order="7 7" result="filterResult47"/>
+        <feComposite in="filterResult45" in2="filterResult47" operator="over" result="filterResult48"/>
+      </filter>
+      <use ffdec:characterId="6" filter="url(#filter6)" height="273.0" transform="matrix(0.0429, 1.2596, 1.3606, 0.1281, 0.0, 408.35)" width="99.8" xlink:href="#sprite4"/>
+      <filter id="filter7">
+        <feColorMatrix in="SourceGraphic" result="filterResult49" type="matrix" values="0 0 0 0 1.0,0 0 0 0 1.0,0 0 0 0 0.0,0 0 0 1 0"/>
+        <feConvolveMatrix divisor="25.0" in="filterResult49" kernelMatrix="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" order="5 5" result="filterResult50"/>
+        <feComposite in="SourceGraphic" in2="filterResult50" operator="over" result="filterResult51"/>
+        <feConvolveMatrix divisor="4.0" in="filterResult51" kernelMatrix="1 1 1 1" order="2 2" result="filterResult52"/>
+        <feColorMatrix in="filterResult52" result="filterResult53" type="matrix" values="0 0 0 0 1.0,0 0 0 0 0.0,0 0 0 0 0.0,0 0 0 1 0"/>
+        <feConvolveMatrix divisor="49.0" in="filterResult53" kernelMatrix="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" order="7 7" result="filterResult54"/>
+        <feComposite in="filterResult52" in2="filterResult54" operator="over" result="filterResult55"/>
+      </filter>
+      <use ffdec:characterId="6" filter="url(#filter7)" height="273.0" transform="matrix(0.3375, 0.9321, 1.0208, -0.363, 108.35, 694.95)" width="99.8" xlink:href="#sprite4"/>
+      <filter id="filter8">
+        <feColorMatrix in="SourceGraphic" result="filterResult56" type="matrix" values="0 0 0 0 1.0,0 0 0 0 1.0,0 0 0 0 0.0,0 0 0 1 0"/>
+        <feConvolveMatrix divisor="25.0" in="filterResult56" kernelMatrix="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" order="5 5" result="filterResult57"/>
+        <feComposite in="SourceGraphic" in2="filterResult57" operator="over" result="filterResult58"/>
+        <feConvolveMatrix divisor="4.0" in="filterResult58" kernelMatrix="1 1 1 1" order="2 2" result="filterResult59"/>
+        <feColorMatrix in="filterResult59" result="filterResult60" type="matrix" values="0 0 0 0 1.0,0 0 0 0 0.0,0 0 0 0 0.0,0 0 0 1 0"/>
+        <feConvolveMatrix divisor="49.0" in="filterResult60" kernelMatrix="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1" order="7 7" result="filterResult61"/>
+        <feComposite in="filterResult59" in2="filterResult61" operator="over" result="filterResult62"/>
+      </filter>
+      <use ffdec:characterId="6" filter="url(#filter8)" height="273.0" transform="matrix(-0.9279, 0.1123, 0.1168, 1.015, 460.4, 0.0)" width="99.8" xlink:href="#sprite4"/>
+      <clipPath id="clipPath1" transform="matrix(2.6551, 0.0, 0.0, 2.6551, 248.25, 394.0)">
+        <path d="M1.35 -57.05 L-78.4 -92.75 Q-80.35 -92.85 -80.4 -90.4 L-4.7 -30.8 6.75 -13.25 14.25 -19.1 43.4 -16.75 22.1 -43.3 17.65 -56.8 1.35 -57.05 M18.05 -37.4 L14.85 -48.7 14.85 -48.65 -1.45 -50.1 -45.2 -70.8 -5.5 -39.6 7.85 -21.9 15.5 -27.45 29.05 -24.95 18.05 -37.4 M0.75 -59.55 L18.9 -59.6 23.65 -44.15 47.7 -14.25 47.45 -14.05 13.9 -16.6 6.4 -11.15 -4.35 -27.15 -80.25 -87.7 Q-83.85 -92.95 -79.95 -95.35 L0.75 -59.55 M15.85 -25.1 L7.7 -18.8 -5.95 -37.2 -6.45 -37.65 Q-29.55 -55.95 -52.75 -75.3 L-0.6 -52.55 15.6 -50.9 19.55 -37.6 34.2 -21.95 15.85 -25.1" fill="url(#gradient4)" fill-rule="evenodd" stroke="none"/>
+        <path d="M58.85 -144.3 Q60.25 -144.95 61.15 -143.7 L78.55 -83.25 86.3 -72.85 80.4 -66.35 75.05 -45.45 62.35 -64.6 55.2 -67.75 60.1 -79.85 58.85 -144.3 M70.25 -88.9 L70.5 -81.35 71.55 -81.0 73.1 -79.75 Q74.85 -77.8 75.2 -74.85 75.5 -71.85 74.25 -69.6 L73.05 -68.0 72.85 -67.9 72.75 -67.9 72.7 -67.8 72.25 -65.2 71.8 -63.05 70.6 -65.8 69.9 -67.1 Q68.35 -67.3 67.0 -68.7 65.4 -70.5 65.0 -73.2 L64.95 -73.65 Q64.6 -76.6 65.85 -78.85 66.7 -80.4 67.95 -81.0 L66.05 -88.5 67.1 -97.2 70.25 -88.9 M63.3 -82.4 L59.0 -68.7 66.65 -65.3 73.65 -52.75 75.85 -66.35 81.65 -72.35 81.85 -72.5 75.0 -83.2 63.25 -122.6 Q62.95 -102.55 63.3 -82.85 L63.3 -82.4 M69.3 -79.95 L68.3 -79.6 Q67.4 -79.15 66.7 -77.95 65.85 -76.4 65.95 -74.3 L66.0 -73.9 Q66.25 -71.6 67.6 -70.1 68.95 -68.65 70.6 -68.85 72.25 -69.05 73.2 -70.8 74.15 -72.6 73.9 -74.9 73.65 -77.2 72.3 -78.65 L70.6 -79.8 69.3 -79.95 M68.95 -77.35 Q68.45 -77.1 68.1 -76.45 67.55 -75.55 67.7 -74.3 67.85 -73.05 68.6 -72.25 69.35 -71.5 70.2 -71.6 71.1 -71.7 71.6 -72.6 72.15 -73.55 72.0 -74.8 71.85 -76.05 71.1 -76.8 70.4 -77.65 69.5 -77.55 L68.95 -77.35 M69.3 -78.3 L69.45 -78.35 Q70.6 -78.5 71.55 -77.45 72.45 -76.35 72.65 -74.75 72.85 -73.2 72.15 -72.0 71.5 -70.75 70.35 -70.6 69.2 -70.45 68.25 -71.5 67.35 -72.55 67.15 -74.1 L67.2 -75.8 67.65 -76.95 Q68.1 -77.75 68.7 -78.1 L69.3 -78.3 M1.35 -57.05 L17.65 -56.8 22.1 -43.3 43.4 -16.75 14.25 -19.1 6.75 -13.25 -4.7 -30.8 -80.4 -90.4 Q-80.35 -92.85 -78.4 -92.75 L1.35 -57.05 M1.0 -43.8 L0.2 -42.4 0.0 -40.8 Q0.05 -39.2 1.1 -37.25 2.45 -34.65 4.9 -32.85 L5.45 -32.5 Q8.25 -30.65 10.7 -30.95 13.15 -31.2 13.8 -33.45 14.5 -35.7 12.95 -38.55 11.4 -41.4 8.6 -43.25 5.75 -45.1 3.35 -44.85 1.85 -44.7 1.0 -43.8 M2.45 -46.85 Q5.65 -47.25 9.25 -44.85 12.9 -42.45 14.9 -38.7 15.75 -37.15 16.1 -35.65 L16.1 -35.3 16.05 -35.15 16.15 -35.05 18.95 -32.05 21.15 -29.5 17.4 -30.5 15.45 -30.85 Q14.35 -29.15 12.0 -28.85 9.05 -28.55 5.7 -30.55 L5.15 -30.9 Q1.55 -33.3 -0.45 -37.0 -1.75 -39.5 -1.85 -41.65 L-5.0 -43.45 -11.55 -46.4 -21.15 -56.0 -9.65 -52.0 -0.8 -45.15 0.2 -46.15 Q1.15 -46.75 2.45 -46.85 M3.1 -40.3 L3.0 -39.5 Q3.0 -38.55 3.6 -37.55 4.4 -36.0 5.9 -35.0 7.45 -34.0 8.75 -34.15 10.1 -34.3 10.45 -35.5 10.8 -36.7 9.95 -38.25 9.15 -39.8 7.6 -40.8 6.1 -41.8 4.8 -41.65 3.45 -41.5 3.1 -40.3 M2.1 -40.8 L2.15 -41.0 Q2.6 -42.55 4.35 -42.75 6.0 -42.9 8.0 -41.65 9.95 -40.35 11.0 -38.35 12.05 -36.35 11.6 -34.8 11.15 -33.25 9.4 -33.05 7.75 -32.85 5.8 -34.15 L3.85 -35.8 2.75 -37.45 Q2.05 -38.8 2.0 -39.9 L2.1 -40.8 M15.85 -25.1 L34.2 -21.95 19.55 -37.6 15.6 -50.9 -0.6 -52.55 -52.75 -75.3 Q-29.55 -55.95 -6.45 -37.65 L-5.95 -37.2 7.7 -18.8 15.85 -25.1 M7.45 24.0 L-7.6 30.05 -61.15 34.6 Q-34.6 40.55 -8.4 45.65 L-7.8 45.75 9.9 55.3 15.35 46.1 32.75 40.3 14.9 33.6 7.6 24.25 7.45 24.0 M12.45 36.9 L12.55 37.1 12.55 37.3 12.7 37.35 16.1 38.7 18.8 39.85 Q17.3 39.95 15.1 40.7 L13.3 41.3 Q12.85 43.3 10.75 44.6 8.2 46.25 4.6 46.1 L4.0 46.05 Q0.05 45.65 -2.8 43.35 -4.75 41.8 -5.45 40.0 L-15.6 40.45 -27.05 36.65 -15.6 34.75 -5.55 36.5 -4.95 35.2 Q-4.3 34.3 -3.15 33.55 -0.4 31.75 3.55 32.15 7.55 32.5 10.4 34.8 L12.45 36.9 M3.4 33.8 Q0.35 33.5 -1.8 34.85 -3.05 35.7 -3.5 36.85 -3.85 37.55 -3.8 38.45 L-3.55 39.9 Q-3.0 41.3 -1.55 42.45 0.5 44.1 3.2 44.5 L3.75 44.55 Q6.85 44.85 8.95 43.45 11.1 42.05 11.05 39.85 10.95 37.6 8.7 35.85 6.5 34.1 3.4 33.8 M0.5 36.95 Q-0.65 37.7 -0.6 38.9 L-0.5 39.65 0.6 41.05 Q1.85 42.05 3.5 42.2 5.15 42.35 6.25 41.6 7.45 40.8 7.4 39.65 7.35 38.45 6.15 37.5 4.95 36.55 3.3 36.4 1.65 36.25 0.5 36.95 M3.35 35.5 Q5.5 35.7 7.05 36.95 8.6 38.2 8.65 39.75 8.7 41.3 7.25 42.2 5.75 43.15 3.6 42.95 L1.4 42.45 -0.05 41.5 Q-1.15 40.7 -1.45 39.75 L-1.65 38.95 -1.65 38.75 Q-1.7 37.2 -0.25 36.25 1.2 35.3 3.35 35.5 M7.5 17.95 L15.5 27.55 42.6 40.5 15.7 51.95 10.7 60.5 -4.8 50.7 -90.45 34.45 Q-91.2 32.35 -89.4 31.45 L-7.15 25.3 7.5 17.95 M23.8 88.7 L32.0 93.25 54.85 93.8 38.05 111.5 36.55 119.6 22.8 117.4 -43.4 134.15 Q-44.45 132.75 -43.4 131.55 L14.95 99.1 23.8 88.7 M25.45 93.35 L25.3 93.2 15.8 102.9 -22.05 124.4 Q-1.3 119.9 19.0 114.85 L19.45 114.75 34.65 115.95 36.35 107.2 47.65 97.0 33.05 97.95 25.45 93.35 M33.7 104.3 Q33.85 105.95 32.65 107.65 31.2 109.75 28.55 110.8 L28.15 110.95 Q25.15 112.05 22.5 111.3 20.7 110.8 19.8 109.65 L12.5 113.35 3.25 114.4 11.1 109.1 18.85 107.05 19.0 105.9 Q19.2 104.95 19.85 104.0 21.45 101.8 24.45 100.7 27.4 99.65 30.0 100.35 31.2 100.7 32.0 101.3 L32.15 101.4 32.2 101.5 32.3 101.5 35.1 101.4 37.35 101.35 Q36.35 101.9 34.9 103.2 L33.7 104.3 M31.7 103.95 Q31.1 102.3 29.05 101.7 L24.7 101.95 Q22.4 102.8 21.2 104.5 20.45 105.55 20.35 106.6 L20.55 107.9 21.1 108.9 Q21.85 109.75 23.25 110.15 L27.15 110.05 27.55 109.9 Q29.9 109.1 31.1 107.35 32.3 105.6 31.7 103.95 M28.15 103.15 Q29.55 103.5 29.95 104.65 30.35 105.8 29.55 107.05 28.7 108.25 27.1 108.8 L25.35 109.15 24.05 109.0 Q23.1 108.7 22.6 108.1 L22.25 107.6 22.2 107.45 Q21.8 106.3 22.65 105.1 23.5 103.85 25.1 103.3 L28.15 103.15 M27.55 103.85 L25.25 104.0 Q24.0 104.4 23.35 105.35 22.7 106.3 23.0 107.2 L23.3 107.7 Q23.7 108.15 24.45 108.4 L26.8 108.25 Q28.05 107.8 28.65 106.9 29.3 105.9 29.0 105.05 28.7 104.15 27.55 103.85" fill="#ffffff" fill-rule="evenodd" stroke="none"/>
+        <path d="M47.15 40.65 L47.0 40.95 16.1 54.3 11.0 62.45 -3.4 53.65 -89.55 36.7 Q-94.3 33.9 -91.55 30.0 L-8.45 23.45 7.85 14.95 16.7 26.1 47.15 40.65 M7.45 24.0 L7.6 24.25 14.9 33.6 32.75 40.3 15.35 46.1 9.9 55.3 -7.8 45.75 -8.4 45.65 Q-34.6 40.55 -61.15 34.6 L-7.6 30.05 7.45 24.0 M13.65 34.45 L7.45 26.25 -7.65 32.55 -53.0 35.05 -8.1 43.5 9.15 52.55 14.35 44.2 27.25 40.1 13.65 34.45 M7.5 17.95 L-7.15 25.3 -89.4 31.45 Q-91.2 32.35 -90.45 34.45 L-4.8 50.7 10.7 60.5 15.7 51.95 42.6 40.5 15.5 27.55 7.5 17.95" fill="url(#gradient5)" fill-rule="evenodd" stroke="none"/>
+        <path d="M23.8 88.7 L14.95 99.1 -43.4 131.55 Q-44.45 132.75 -43.4 134.15 L22.8 117.4 36.55 119.6 38.05 111.5 54.85 93.8 32.0 93.25 23.8 88.7 M23.35 86.3 L32.45 91.7 58.15 92.4 58.15 92.6 38.9 113.1 37.2 120.95 24.6 119.2 -42.2 135.5 Q-46.4 135.05 -45.3 131.2 L13.55 98.2 23.35 86.3 M25.45 93.35 L33.05 97.95 47.65 97.0 36.35 107.2 34.65 115.95 19.45 114.75 19.0 114.85 Q-1.3 119.9 -22.05 124.4 L15.8 102.9 25.3 93.2 25.45 93.35 M33.4 114.1 L35.2 106.1 43.55 98.65 32.3 99.05 25.8 95.0 16.4 104.75 -16.05 121.95 18.7 113.2 33.4 114.1" fill="url(#gradient6)" fill-rule="evenodd" stroke="none"/>
+        <path d="M58.85 -144.3 L60.1 -79.85 55.2 -67.75 62.35 -64.6 75.05 -45.45 80.4 -66.35 86.3 -72.85 78.55 -83.25 61.15 -143.7 Q60.25 -144.95 58.85 -144.3 M57.3 -143.45 Q58.65 -147.2 61.95 -145.4 L79.7 -84.35 88.6 -72.8 81.75 -65.55 75.6 -42.1 75.4 -42.15 60.7 -64.15 53.85 -67.4 58.1 -78.65 57.3 -143.45 M63.3 -82.4 L63.3 -82.85 Q62.95 -102.55 63.25 -122.6 L75.0 -83.2 81.85 -72.5 81.65 -72.35 75.85 -66.35 73.65 -52.75 66.65 -65.3 59.0 -68.7 63.3 -82.4 M75.05 -67.25 L80.15 -72.4 73.1 -83.15 64.25 -116.55 64.9 -82.8 60.9 -69.45 67.85 -66.15 72.95 -56.85 75.05 -67.25" fill="url(#gradient7)" fill-rule="evenodd" stroke="none"/>
+      </clipPath>
+    </g>
+    <g id="sprite3" transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)">
+      <use ffdec:characterId="3" height="386.1" transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)" width="158.05" xlink:href="#shape2"/>
+    </g>
+    <g id="shape2" transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)">
+      <path d="M158.05 13.15 Q98.75 18.9 55.45 72.3 7.0 132.25 7.0 216.9 7.0 291.75 44.85 347.2 51.55 361.15 58.2 373.7 L64.95 386.1 Q58.15 379.1 51.7 371.15 0.0 307.3 0.0 217.0 0.0 126.7 51.7 62.8 96.75 7.2 158.05 0.0 L158.05 13.15 M158.05 32.8 Q141.7 36.7 131.1 39.95 L127.65 40.7 Q126.2 42.05 122.75 43.25 73.55 81.8 68.75 88.7 62.35 97.85 57.85 103.2 24.9 150.9 24.9 215.4 24.9 279.25 57.2 326.55 62.9 338.45 68.6 349.15 L74.35 359.75 Q68.55 353.8 63.05 347.0 18.95 292.5 18.95 215.45 18.95 138.4 56.05 95.5 93.1 52.55 132.05 35.45 L131.2 35.65 Q132.45 35.0 133.85 34.3 145.55 30.9 158.05 29.9 L158.05 32.8" fill="#ffffff" fill-rule="evenodd" stroke="none"/>
+    </g>
+    <g id="sprite4" transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)">
+      <use ffdec:characterId="5" height="273.0" transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)" width="99.8" xlink:href="#shape3"/>
+    </g>
+    <g id="shape3" transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)">
+      <path d="M60.8 4.0 Q56.45 2.75 54.3 6.25 L24.85 167.7 6.4 196.95 25.15 211.95 47.1 264.1 76.7 210.7 95.8 200.35 78.05 170.65 60.8 4.0 M65.4 5.7 L84.15 173.2 99.8 200.85 81.6 211.35 47.2 272.75 46.6 273.0 21.8 214.35 0.0 197.75 21.25 165.25 51.65 2.15 Q60.35 -3.5 65.4 5.7 M24.05 196.2 L24.0 196.2 40.1 207.85 49.35 234.05 60.6 208.55 79.25 197.8 63.6 164.6 54.55 77.3 40.35 166.3 24.05 196.2 M35.0 166.6 L55.35 61.35 Q62.65 113.0 68.15 163.95 L68.25 165.1 84.9 199.1 64.4 210.35 48.65 244.85 38.0 210.4 19.7 196.75 19.15 196.45 35.0 166.6" fill="url(#gradient0)" fill-rule="evenodd" stroke="none"/>
+      <path d="M60.8 4.0 L78.05 170.65 95.8 200.35 76.7 210.7 47.1 264.1 25.15 211.95 6.4 196.95 24.85 167.7 54.3 6.25 Q56.45 2.75 60.8 4.0 M35.0 166.6 L19.15 196.45 19.7 196.75 38.0 210.4 48.65 244.85 64.4 210.35 84.9 199.1 68.25 165.1 68.15 163.95 Q62.65 113.0 55.35 61.35 L35.0 166.6 M55.05 173.8 L52.05 173.35 Q50.2 173.35 48.55 174.05 46.05 175.05 44.05 177.6 40.75 181.85 40.75 187.85 40.75 193.85 44.05 198.1 47.35 202.35 52.05 202.35 56.75 202.35 60.05 198.1 63.4 193.85 63.4 187.85 L63.4 186.75 Q63.1 181.45 60.05 177.6 57.85 174.75 55.05 173.8 M53.95 179.85 L52.35 179.6 Q49.8 179.6 48.05 181.9 46.25 184.2 46.25 187.4 46.25 190.65 48.05 192.9 49.8 195.2 52.35 195.2 54.85 195.2 56.65 192.9 58.45 190.65 58.45 187.4 58.45 184.2 56.65 181.9 55.45 180.35 53.95 179.85 M58.55 150.2 L56.25 163.45 55.7 170.1 Q59.35 171.3 62.2 175.0 66.5 180.5 66.5 188.25 L66.5 189.4 Q66.2 196.4 62.2 201.5 59.0 205.65 54.7 206.7 L53.05 210.25 Q51.0 214.7 50.5 217.6 L48.6 212.3 46.45 205.75 46.35 205.5 46.0 205.5 45.55 205.25 Q43.35 203.85 41.5 201.5 37.25 196.0 37.25 188.25 37.25 180.5 41.5 175.0 43.3 172.7 45.45 171.35 46.8 170.5 48.3 170.05 L46.55 150.6 52.8 128.05 58.55 150.2 M54.3 177.85 Q56.25 178.5 57.8 180.5 58.8 181.8 59.4 183.35 60.1 185.3 60.1 187.65 60.1 191.8 57.8 194.75 55.5 197.7 52.25 197.7 49.0 197.7 46.65 194.75 44.4 191.8 44.4 187.65 44.4 183.45 46.65 180.5 49.0 177.55 52.25 177.55 L52.65 177.55 54.3 177.85" fill="#ffffff" fill-rule="evenodd" stroke="none"/>
+    </g>
+    <linearGradient gradientTransform="matrix(-0.002, -0.1081, 0.1202, -0.0022, -4.0, 137.2)" gradientUnits="userSpaceOnUse" id="gradient0" spreadMethod="pad" x1="-819.2" x2="819.2">
+      <stop offset="0.0" stop-color="#edae67"/>
+      <stop offset="1.0" stop-color="#fafca9"/>
+    </linearGradient>
+    <linearGradient gradientTransform="matrix(0.0104, -0.0284, -0.0289, -0.0105, -4.8, -79.2)" gradientUnits="userSpaceOnUse" id="gradient1" spreadMethod="pad" x1="-819.2" x2="819.2">
+      <stop offset="0.0" stop-color="#edae67"/>
+      <stop offset="1.0" stop-color="#fafca9"/>
+    </linearGradient>
+    <linearGradient gradientTransform="matrix(0.0203, -0.0161, -0.0164, -0.0206, 35.3, -14.6)" gradientUnits="userSpaceOnUse" id="gradient2" spreadMethod="pad" x1="-819.2" x2="819.2">
+      <stop offset="0.0" stop-color="#edae67"/>
+      <stop offset="1.0" stop-color="#fafca9"/>
+    </linearGradient>
+    <linearGradient gradientTransform="matrix(0.0222, 0.0057, 0.0057, -0.0226, 27.2, 65.45)" gradientUnits="userSpaceOnUse" id="gradient3" spreadMethod="pad" x1="-819.2" x2="819.2">
+      <stop offset="0.0" stop-color="#edae67"/>
+      <stop offset="1.0" stop-color="#fafca9"/>
+    </linearGradient>
+    <g id="sprite5" transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)">
+      <use ffdec:characterId="8" height="436.1" transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)" width="195.05" xlink:href="#shape5"/>
+    </g>
+    <g id="shape5" transform="matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)">
+      <path d="M11.5 30.45 Q73.95 30.45 118.05 84.95 162.15 139.45 162.15 216.5 162.15 293.55 118.05 348.05 73.95 402.55 11.5 402.55 L6.3 402.5 9.75 400.9 Q76.85 378.35 108.0 339.75 149.35 288.7 149.35 216.45 149.35 144.2 108.0 93.05 81.15 59.9 47.1 48.3 42.25 44.9 37.2 41.95 19.1 34.65 0.0 33.85 L0.0 30.95 11.5 30.45 M14.5 13.5 L0.0 14.2 0.0 1.05 18.5 0.0 Q91.65 0.0 143.35 63.85 195.05 127.75 195.05 218.05 195.05 308.35 143.35 372.2 91.65 436.1 18.5 436.1 L12.4 436.0 Q14.35 435.25 16.45 434.15 95.05 407.7 131.55 362.5 180.05 302.65 180.05 217.95 180.05 133.3 131.55 73.35 83.1 13.5 14.5 13.5" fill="#ffffff" fill-rule="evenodd" stroke="none"/>
+    </g>
+    <linearGradient gradientTransform="matrix(-0.0504, -0.0343, -0.0178, 0.0565, -8.9, -80.15)" gradientUnits="userSpaceOnUse" id="gradient4" spreadMethod="pad" x1="-819.2" x2="819.2">
+      <stop offset="0.0" stop-color="#edae67"/>
+      <stop offset="1.0" stop-color="#fafca9"/>
+    </linearGradient>
+    <linearGradient gradientTransform="matrix(-0.0555, -0.0062, 8.0E-4, 0.0569, -23.25, 10.1)" gradientUnits="userSpaceOnUse" id="gradient5" spreadMethod="pad" x1="-819.2" x2="819.2">
+      <stop offset="0.0" stop-color="#edae67"/>
+      <stop offset="1.0" stop-color="#fafca9"/>
+    </linearGradient>
+    <linearGradient gradientTransform="matrix(-0.0418, 0.0141, 0.0144, 0.0425, -0.45, 93.2)" gradientUnits="userSpaceOnUse" id="gradient6" spreadMethod="pad" x1="-819.2" x2="819.2">
+      <stop offset="0.0" stop-color="#edae67"/>
+      <stop offset="1.0" stop-color="#fafca9"/>
+    </linearGradient>
+    <linearGradient gradientTransform="matrix(-0.0041, -0.0414, -0.0421, 0.0042, 87.35, -96.1)" gradientUnits="userSpaceOnUse" id="gradient7" spreadMethod="pad" x1="-819.2" x2="819.2">
+      <stop offset="0.0" stop-color="#edae67"/>
+      <stop offset="1.0" stop-color="#fafca9"/>
+    </linearGradient>
+  </defs>
+</svg>
