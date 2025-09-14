@@ -14,7 +14,13 @@ import { CellContext, Column, ColumnDef, FilterFn, RowData } from "@tanstack/rea
 import { JSX } from "react";
 
 import { DataTableRowActions } from "@/components/table/data-table-row-actions";
-import { effectsHumanDesc, refValueHumanDesc, templateHumanDesc, valuesHumanDesc } from "@/config/hca-utils";
+import {
+    effectsHumanDesc,
+    exprHumanDesc,
+    namedIdHumanDesc,
+    templateHumanDesc,
+    valuesHumanDesc,
+} from "@/config/hca-utils";
 import { compress } from "@/lib/utils";
 import JSON5 from "json5";
 
@@ -151,14 +157,14 @@ function buildCell<TData extends RowData, TValue = unknown>(
         return ({ row }) => (
             <>
                 {(row.getValue(key) as number) > 0 && (
-                    <div>{queryNameById(config, row.getValue(key), RefValueType.SkillCategory)}</div>
+                    <div>{queryNameById(config, RefValueType.SkillCategory, row.getValue(key))}</div>
                 )}
             </>
         );
     }
     if (DataType.PetSkills === type) {
         return ({ row }) => (
-            <>{(row.getValue(key) as number[])?.map((e) => queryNameById(config, e, RefValueType.Skill)).join("、")}</>
+            <>{(row.getValue(key) as number[])?.map((e) => queryNameById(config, RefValueType.Skill, e)).join("、")}</>
         );
     }
     if (
@@ -174,10 +180,10 @@ function buildCell<TData extends RowData, TValue = unknown>(
         return ({ row }) => <div>{effectsHumanDesc(config, row.getValue(key))}</div>;
     }
     if (DataType.RefRawHook === type) {
-        return ({ row }) => <div>{refValueHumanDesc(config, RefValueType.RawHook, row.getValue(key))}</div>;
+        return ({ row }) => <div>{namedIdHumanDesc(config, RefValueType.RawHook, row.getValue(key))}</div>;
     }
     if (DataType.RefRawOrder === type) {
-        return ({ row }) => <div>{refValueHumanDesc(config, RefValueType.RawOrder, row.getValue(key))}</div>;
+        return ({ row }) => <div>{namedIdHumanDesc(config, RefValueType.RawOrder, row.getValue(key))}</div>;
     }
     if (DataType.RefArray === type) {
         return ({ row }) => <div>{valuesHumanDesc(config, row.getValue(key))}</div>;
@@ -195,6 +201,9 @@ function buildCell<TData extends RowData, TValue = unknown>(
                     refCounter(config.main, table.options.meta?.type, row.getValue(key)).length}
             </div>
         );
+    }
+    if (DataType.RawExpr === type) {
+        return ({ row }) => <div>{exprHumanDesc(config, row.getValue(key))}</div>;
     }
     return ({ row }) => <div>JSON:{JSON.stringify(row.getValue(key))}</div>;
 }

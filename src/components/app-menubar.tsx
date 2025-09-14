@@ -2,11 +2,11 @@ import { Button } from "@/components/ui/button.tsx";
 import { useSidebar } from "@/components/ui/sidebar.tsx";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs.tsx";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip.tsx";
-import { MainConfig } from "@/config/config-schema.ts";
-import { export4Human } from "@/config/export-utils.ts";
-import { downloadFile, showOpenFilePicker, showSaveFilePicker, uploadFile } from "@/lib/utils.ts";
-import { useCacheStore } from "@/store/cacheStore.ts";
-import { useConfigStore } from "@/store/configStore.ts";
+import { MainConfig } from "@/config/base";
+import { export4Human } from "@/config/export-utils";
+import { downloadFile, showOpenFilePicker, showSaveFilePicker, uploadFile } from "@/lib/utils";
+import { useCacheStore } from "@/store/cacheStore";
+import { useConfigStore } from "@/store/configStore";
 import { kvsIndexedDB, KVSIndexedDB } from "@kvs/indexeddb";
 import { PanelRightClose, PanelRightOpen, TriangleAlert } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -98,7 +98,7 @@ async function save(source: string, config: MainConfig) {
         const fileHandle = await buildStorageFileHandle();
         const writable = await fileHandle.createWritable();
         await writable.write(export4Human(config));
-        await writable.close();
+        return await writable.close();
     }
     toast.warning("Specified storage type is unavailable." + ": " + source);
     throw "save failed to:" + source;

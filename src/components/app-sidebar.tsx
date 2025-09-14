@@ -66,17 +66,14 @@ const groups = [
                 name: "Condition",
                 type: RefValueType.Condition,
             },
-            {
-                name: "Action",
-                type: RefValueType.Action,
-            },
+        ],
+    },
+    {
+        name: "Hook",
+        items: [
             {
                 name: "Hook",
                 type: RefValueType.Hook,
-            },
-            {
-                name: "Array",
-                type: RefValueType.Array,
             },
         ],
     },

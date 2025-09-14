@@ -1,22 +1,22 @@
 import { z, ZodArray, ZodNumber, ZodObject, ZodString, ZodType } from "zod";
 
-const wrapper = <T>(ctx: ZodType<T>, defaultValue: T) => z.preprocess((value) => value ?? defaultValue, ctx);
+export const wrapper = <T>(ctx: ZodType<T>, defaultValue: T) => z.preprocess((value) => value ?? defaultValue, ctx);
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
-const number: ZodNumber = wrapper(z.number(), 0);
+export const number: ZodNumber = wrapper(z.number(), 0);
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
-const string: ZodString = wrapper(z.string(), "");
+export const string: ZodString = wrapper(z.string(), "");
 
-function array<T extends ZodType>(schema: T): ZodArray<T> {
+export function array<T extends ZodType>(schema: T): ZodArray<T> {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     return wrapper(z.array(schema), []);
 }
 
-function object<T extends Readonly<{ [k: string]: ZodType }>>(
+export function object<T extends Readonly<{ [k: string]: ZodType }>>(
     shape: T,
     // eslint-disable-next-line
 ): ZodObject<T, {}> {
@@ -38,8 +38,6 @@ const Value = wrapper(
         "character?": number.nullish(),
         "monster_type?": number.nullish(),
         "skill_category?": number.nullish(),
-        "array?": number.nullish(),
-        "arg?": number.nullish(),
         get "expr?"() {
             return ExprValue.nullish();
         },
@@ -63,18 +61,48 @@ const Effect = object({
 });
 const Effects = array(Effect);
 
+const Expr = wrapper(
+    z.interface({
+        "raw?": string.nullish(),
+        "monster?": number.nullish(),
+        "skill?": number.nullish(),
+        "feature?": number.nullish(),
+        "emblem?": number.nullish(),
+        "weather?": number.nullish(),
+        "buff?": number.nullish(),
+        "item?": number.nullish(),
+        "character?": number.nullish(),
+        "monster_type?": number.nullish(),
+        "skill_category?": number.nullish(),
+        get "expr?"() {
+            return object({
+                fmt: string,
+                args: array(Expr),
+            }).nullish();
+        },
+        get "ref?"() {
+            return object({
+                id: number,
+                args: array(Expr),
+            }).nullish();
+        },
+        "arg?": number.nullish(),
+    }),
+    {},
+);
+
 const namedIdSchema = {
     id: number,
     name: string,
-    tips: string.nullish(),
+    tips: string,
 };
 const effectsSchema = {
     ...namedIdSchema,
     effects: array(Effect),
 };
 const TemplateData = object({
-    hook: RefValue,
-    action: RefValue,
+    hook: number,
+    action: Expr,
 });
 
 export const ConfigSchema = {
@@ -139,29 +167,29 @@ export const ConfigSchema = {
     }),
     RawExpr: object({
         ...namedIdSchema,
-        value: string,
+        value: Expr,
     }),
     HcaValue: object({
         ...namedIdSchema,
-        expr: string,
+        expr: Expr,
     }),
     HcaCondition: object({
         ...namedIdSchema,
-        expr: string,
+        expr: Expr,
     }),
     HcaAction: object({
         ...namedIdSchema,
-        expr: string,
+        expr: Expr,
     }),
     HcaHook: object({
         ...namedIdSchema,
-        expr: string,
-        hook: RefValue,
-        order: RefValue,
+        expr: Expr,
+        hook: number,
+        order: number,
     }),
     HcaArray: object({
         ...namedIdSchema,
-        data: array(Value),
+        data: array(Expr),
     }),
     Template: object({
         ...namedIdSchema,
@@ -201,6 +229,7 @@ export type ExprValue = z.infer<typeof ExprValue>;
 export type RefValue = z.infer<typeof RefValue>;
 export type Effect = z.infer<typeof Effect>;
 export type Effects = z.infer<typeof Effects>;
+export type Expr = z.infer<typeof Expr>;
 export type TemplateData = z.infer<typeof TemplateData>;
 export type Monster = z.infer<typeof ConfigSchema.Monster>;
 export type Skill = z.infer<typeof ConfigSchema.Skill>;

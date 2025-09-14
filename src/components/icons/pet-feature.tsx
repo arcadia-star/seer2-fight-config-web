@@ -1,3 +1,4 @@
+import { iconConfig } from "@/components/icons/icon-config.ts";
 import { cn } from "@/lib/utils";
 
 interface PetFeatureIcon {
@@ -6,8 +7,8 @@ interface PetFeatureIcon {
     className?: string;
 }
 
-export function PetFeatureIcon({ size = 20, className }: PetFeatureIcon) {
-    const text = "羽村";
+export function PetFeatureIcon({ id, size = 20, className }: PetFeatureIcon) {
+    const text = iconConfig.feature2Name[id] || "未知";
     const height = size;
     const width = size * 2;
     const fontSize = size * 0.65;

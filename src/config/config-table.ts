@@ -41,6 +41,7 @@ export enum DataType {
     Template,
     Json,
     RefCounter,
+    RawExpr,
 }
 
 export type DataHeader = {

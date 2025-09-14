@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { NamedId } from "@/config/base";
-import { cn } from "@/lib/utils.ts";
+import { cn } from "@/lib/utils";
 import { Check, ChevronsUpDown, SearchIcon, X } from "lucide-react";
 import React, { useRef, useState, WheelEventHandler } from "react";
 import { Virtuoso, VirtuosoHandle } from "react-virtuoso";

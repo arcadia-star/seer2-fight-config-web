@@ -2,7 +2,7 @@ import { ArrayForm } from "@/components/form/array-form";
 import { EffectsForm } from "@/components/form/effects-form";
 import { SelectForm } from "@/components/form/select-form";
 import { TemplateForm } from "@/components/form/template-form";
-import { RefValueForm, ValueForm } from "@/components/form/value-form";
+import { ExprForm } from "@/components/form/value-form";
 import {
     FightBuffIcon,
     FightWeatherIcon,
@@ -48,10 +48,10 @@ export function DataTableRowForm<TData>({ type, headers, update, data, onSubmit 
         schema = field(schema.def, "out").extend({
             id: z
                 .number()
-                .refine((id) => !queryNamedId(config, id, type), {
+                .refine((id) => !queryNamedId(config, type, id), {
                     error: ({ input }) =>
                         "ID conflict. Choose a non-duplicate value. Current value:" +
-                        queryNameById(config, input as number, type),
+                        queryNameById(config, type, input as number),
                 })
                 .refine((id) => id !== 0, "ID cannot be zero!"),
         });
@@ -199,19 +199,17 @@ export function DataTableRowForm<TData>({ type, headers, update, data, onSubmit 
                                                 </ArrayForm>
                                             )) ||
                                             (DataType.RefRawHook === e.type && (
-                                                <RefValueForm
+                                                <SelectForm
+                                                    options={queryNamedIdList(config, RefValueType.RawHook)}
                                                     value={field.value}
                                                     onValueChange={field.onChange}
-                                                    type={RefValueType.RawHook}
-                                                    config={config}
                                                 />
                                             )) ||
                                             (DataType.RefRawOrder === e.type && (
-                                                <RefValueForm
+                                                <SelectForm
+                                                    options={queryNamedIdList(config, RefValueType.RawOrder)}
                                                     value={field.value}
                                                     onValueChange={field.onChange}
-                                                    type={RefValueType.RawOrder}
-                                                    config={config}
                                                 />
                                             )) ||
                                             (DataType.RefArray === e.type && (
@@ -221,7 +219,7 @@ export function DataTableRowForm<TData>({ type, headers, update, data, onSubmit 
                                                     defaultElement={() => ({})}
                                                 >
                                                     {({ value, onValueChange }) => (
-                                                        <ValueForm
+                                                        <ExprForm
                                                             value={value}
                                                             onValueChange={onValueChange}
                                                             config={config}
@@ -238,6 +236,13 @@ export function DataTableRowForm<TData>({ type, headers, update, data, onSubmit 
                                             )) ||
                                             (DataType.Effects === e.type && (
                                                 <EffectsForm
+                                                    value={field.value}
+                                                    onValueChange={field.onChange}
+                                                    config={config}
+                                                />
+                                            )) ||
+                                            (DataType.RawExpr === e.type && (
+                                                <ExprForm
                                                     value={field.value}
                                                     onValueChange={field.onChange}
                                                     config={config}

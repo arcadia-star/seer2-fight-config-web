@@ -1,6 +1,5 @@
-import { RefValueSchema, RefValueType } from "@/config/base";
+import { MainConfig, RefValueSchema, RefValueType } from "@/config/base";
 import { configByType } from "@/config/config";
-import { MainConfig } from "@/config/config-schema";
 import { compress, field } from "@/lib/utils";
 
 export const export4Human = (config: MainConfig) => {

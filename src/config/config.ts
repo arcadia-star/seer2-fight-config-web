@@ -1,4 +1,4 @@
-import { MainConfig, Monster, NamedId, RefValueType, Value } from "@/config/base";
+import { Effects, Expr, MainConfig, Monster, NamedId, RefValue, RefValueType, Value } from "@/config/base";
 import { field, fieldSet } from "@/lib/utils";
 
 export type DataConfig = {
@@ -16,7 +16,6 @@ export const ValueEnumType = [
     { key: "character", type: RefValueType.Character },
     { key: "monster_type", type: RefValueType.MonsterType },
     { key: "skill_category", type: RefValueType.SkillCategory },
-    { key: "array", type: RefValueType.Array },
 ];
 
 const RefValueType2Key: Record<RefValueType, string> = {
@@ -50,10 +49,10 @@ export const configByType = (config: MainConfig, type: RefValueType) => {
     };
 };
 
-export const queryNameById = (config: DataConfig, id: number, type: RefValueType) => {
-    return queryNamedId(config, id, type)?.name ?? `<??-${id}>`;
+export const queryNameById = (config: DataConfig, type: RefValueType, id: number) => {
+    return queryNamedId(config, type, id)?.name ?? `<??-${id}>`;
 };
-export const queryNamedId = (config: DataConfig, id: number, type: RefValueType) => {
+export const queryNamedId = (config: DataConfig, type: RefValueType, id: number) => {
     return queryNamedIdList(config, type).find((e) => e.id === id);
 };
 export const queryNamedIdList = (config: DataConfig, type: RefValueType): NamedId[] => {
@@ -61,7 +60,7 @@ export const queryNamedIdList = (config: DataConfig, type: RefValueType): NamedI
 };
 export const queryMonsterChains = (config: DataConfig, monsterId: number): Monster[] => {
     const monsterChains = [];
-    let now = queryNamedId(config, monsterId, RefValueType.Monster) as Monster;
+    let now = queryNamedId(config, RefValueType.Monster, monsterId) as Monster;
     monsterChains.unshift(now);
     while (now && now.from && now.from > 0 && now.from < now.id) {
         const parent = queryNamedIdList(config, RefValueType.Monster).find((m) => m.id === now.from) as Monster;
@@ -75,7 +74,7 @@ export const queryMonsterChains = (config: DataConfig, monsterId: number): Monst
     return monsterChains;
 };
 export const modifyId = (config: MainConfig, type: RefValueType, from: number, to: number, move: boolean): boolean => {
-    const namedIds: NamedId[] = config[RefValueType2Key[type] as never];
+    const namedIds = configByType(config, type).get();
 
     if (!move) {
         if (namedIds.find((e) => e.id === to)) {
@@ -88,181 +87,166 @@ export const modifyId = (config: MainConfig, type: RefValueType, from: number, t
         });
     }
 
-    function updateRefValueId(e: { id: number; args: Value[] }, t: RefValueType) {
-        if (t === type) {
-            if (e.id === from) {
-                e.id = to;
-            }
-        }
-        e.args?.forEach(updateValue);
-    }
-
-    function updateValue(e: Value) {
-        for (const { type: t, key } of ValueEnumType) {
-            if (t === type) {
-                if (field(e, key) === from) {
-                    fieldSet(e, key, to);
-                }
-            }
-        }
-        const ref = e.ref;
-        if (ref) {
-            updateRefValueId(ref, RefValueType.Value);
-        }
-        const expr = e.expr;
-        if (expr) {
-            expr.args.forEach(updateValue);
-        }
-    }
-
-    [config.skill, config.feature, config.emblem, config.weather, config.buff, config.item]
-        .flatMap((e) => e.flatMap((e) => e.effects))
-        .forEach(({ template, conditions }) => {
-            updateRefValueId(template, RefValueType.Template);
-            conditions.forEach((condition) => {
-                updateRefValueId(condition, RefValueType.Condition);
-            });
-        });
-    config.hook.forEach(({ hook, order }) => {
-        updateRefValueId(hook, RefValueType.RawHook);
-        updateRefValueId(order, RefValueType.RawOrder);
+    handleRelation(config, type, from, ({ name }, updateId) => {
+        console.debug("update:" + name);
+        updateId(to);
     });
-    config.array.forEach((e) => {
-        e.data.forEach(updateValue);
-    });
-    config.template
-        .flatMap((e) => e.data)
-        .forEach(({ hook, action }) => {
-            updateRefValueId(hook, RefValueType.Hook);
-            updateRefValueId(action, RefValueType.Action);
-        });
-    if (RefValueType.MonsterType === type) {
-        config.monster.forEach((e) => {
-            if (e.type === from) {
-                e.type = to;
-            }
-        });
-        config.skill.forEach((e) => {
-            if (e.type === from) {
-                e.type = to;
-            }
-        });
-    } else if (RefValueType.SkillCategory === type) {
-        config.skill.forEach((e) => {
-            if (e.category === from) {
-                e.category = to;
-            }
-        });
-    } else if (RefValueType.Skill === type) {
-        config.monster.forEach((e) => {
-            if (e.skills.includes(from)) {
-                e.skills = e.skills.map((e) => (e === from ? to : e));
-            }
-        });
-    } else if (RefValueType.Monster === type) {
-        config.monster.forEach((e) => {
-            if (e.from === from) {
-                e.from = to;
-            }
-        });
-    }
+
     return true;
 };
 
-export const refCounter = (config: MainConfig, type: RefValueType, from: number) => {
+export const refCounter = (config: MainConfig, type: RefValueType, id: number) => {
     const collect: { name: string }[] = [];
+    handleRelation(config, type, id, ({ name }) => {
+        collect.push({ name });
+    });
+    return collect;
+};
 
-    function checkRefValueId(e: { id: number; args: Value[] }, t: RefValueType) {
-        if (t === type) {
-            if (e.id === from) {
-                return true;
-            }
-        }
-        return !!e.args?.find(checkValue);
+const handleRelation = (
+    config: MainConfig,
+    type: RefValueType,
+    id: number,
+    callback: (namedId: NamedId, updateId: (id: number) => void) => void,
+) => {
+    function handleEffects(namedId: NamedId, effects: Effects) {
+        effects.forEach((e) => {
+            handleRefValue(namedId, e.template, RefValueType.Template);
+            e.conditions.forEach((e) => handleRefValue(namedId, e, RefValueType.Condition));
+        });
     }
 
-    function checkValue(e: Value) {
-        for (const { type: t, key } of ValueEnumType) {
-            if (t === type) {
-                if (field(e, key) === from) {
-                    return true;
+    function handleExpr(namedId: NamedId, expr: Expr) {
+        for (const { type: thisType, key } of ValueEnumType) {
+            if (thisType === type) {
+                if (field(expr, key) === id) {
+                    callback(namedId, (id) => fieldSet(expr, key, id));
                 }
             }
         }
-        const ref = e.ref;
+        const ref = expr.ref;
         if (ref) {
-            return checkRefValueId(ref, RefValueType.Value);
+            if (RefValueType.RawExpr === type) {
+                if (ref.id === id) {
+                    callback(namedId, (id) => (ref.id = id));
+                }
+            }
+            ref.args?.forEach((e) => handleExpr(namedId, e));
         }
-        const expr = e.expr;
+        const expr1 = expr.expr;
+        if (expr1) {
+            expr1.args.forEach((e) => handleExpr(namedId, e));
+        }
+    }
+
+    function handleValue(namedId: NamedId, value: Value) {
+        for (const { type: thisType, key } of ValueEnumType) {
+            if (thisType === type) {
+                if (field(value, key) === id) {
+                    callback(namedId, (id) => fieldSet(value, key, id));
+                }
+            }
+        }
+        const ref = value.ref;
+        if (ref) {
+            handleRefValue(namedId, ref, RefValueType.Value);
+        }
+        const expr = value.expr;
         if (expr) {
-            return !!expr.args.find(checkValue);
+            expr.args.forEach((e) => handleValue(namedId, e));
         }
-        return false;
     }
 
-    [config.skill, config.feature, config.emblem, config.weather, config.buff, config.item]
-        .flatMap((e) => e)
-        .forEach(({ name, effects }) => {
-            if (
-                effects.find(
-                    ({ template, conditions }) =>
-                        checkRefValueId(template, RefValueType.Template) ||
-                        conditions.find((condition) => checkRefValueId(condition, RefValueType.Condition)),
-                )
-            ) {
-                collect.push({ name });
+    function handleRefValue(namedId: NamedId, refValue: RefValue, thisType: RefValueType) {
+        if (thisType === type) {
+            if (refValue.id === id) {
+                callback(namedId, (id) => (refValue.id = id));
             }
-        });
-    config.hook.forEach(({ name, hook, order }) => {
-        if (checkRefValueId(hook, RefValueType.RawHook) || checkRefValueId(order, RefValueType.RawOrder)) {
-            collect.push({ name });
         }
-    });
-    config.array.forEach(({ name, data }) => {
-        if (data.find(checkValue)) {
-            collect.push({ name: name });
-        }
-    });
-    config.template.forEach(({ name, data }) => {
-        if (
-            data.find(
-                ({ hook, action }) =>
-                    checkRefValueId(hook, RefValueType.Hook) || checkRefValueId(action, RefValueType.Action),
-            )
-        ) {
-            collect.push({ name });
-        }
-    });
-    if (RefValueType.MonsterType === type) {
-        config.monster.forEach(({ name, type }) => {
-            if (type === from) {
-                collect.push({ name });
-            }
-        });
-        config.skill.forEach(({ name, type }) => {
-            if (type === from) {
-                collect.push({ name });
-            }
-        });
-    } else if (RefValueType.SkillCategory === type) {
-        config.skill.forEach(({ name, category }) => {
-            if (category === from) {
-                collect.push({ name });
-            }
-        });
-    } else if (RefValueType.Skill === type) {
-        config.monster.forEach(({ name, skills }) => {
-            if (skills.includes(from)) {
-                collect.push({ name });
-            }
-        });
-    } else if (RefValueType.Monster === type) {
-        config.monster.forEach(({ name, from: evolveFrom }) => {
-            if (evolveFrom === from) {
-                collect.push({ name });
-            }
-        });
+        refValue.args?.forEach((e) => handleValue(namedId, e));
     }
 
-    return collect;
+    config.monster.forEach((e) => {
+        if (RefValueType.Feature === type) {
+            if (e.feature === id) {
+                callback(e, (id) => (e.feature = id));
+            }
+        } else if (RefValueType.MonsterType === type) {
+            if (e.type === id) {
+                callback(e, (id) => (e.type = id));
+            }
+        } else if (RefValueType.Monster === type) {
+            if (e.from === id) {
+                callback(e, (id) => (e.from = id));
+            }
+        } else if (RefValueType.Skill === type) {
+            if (e.skills.includes(id)) {
+                callback(e, (target) => (e.skills = e.skills.map((e) => (e === id ? target : e))));
+            }
+        }
+    });
+    config.skill.forEach((e) => {
+        if (RefValueType.MonsterType === type) {
+            if (e.type === id) {
+                callback(e, (id) => (e.type = id));
+            }
+        } else if (RefValueType.SkillCategory === type) {
+            if (e.category === id) {
+                callback(e, (id) => (e.category = id));
+            }
+        }
+        handleEffects(e, e.effects);
+    });
+    config.feature.forEach((e) => {
+        handleEffects(e, e.effects);
+    });
+    config.emblem.forEach((e) => {
+        handleEffects(e, e.effects);
+    });
+    config.weather.forEach((e) => {
+        handleEffects(e, e.effects);
+    });
+    config.buff.forEach((e) => {
+        handleEffects(e, e.effects);
+    });
+    config.item.forEach((e) => {
+        handleEffects(e, e.effects);
+    });
+    config.raw_expr.forEach((e) => {
+        handleExpr(e, e.value);
+    });
+    config.value.forEach((e) => {
+        handleExpr(e, e.expr);
+    });
+    config.condition.forEach((e) => {
+        handleExpr(e, e.expr);
+    });
+    config.action.forEach((e) => {
+        handleExpr(e, e.expr);
+    });
+    config.hook.forEach((e) => {
+        if (RefValueType.RawHook === type) {
+            if (e.hook === id) {
+                callback(e, (id) => (e.hook = id));
+            }
+        } else if (RefValueType.RawOrder === type) {
+            if (e.order === id) {
+                callback(e, (id) => (e.order = id));
+            }
+        }
+        handleExpr(e, e.expr);
+    });
+    config.array.forEach((array) => {
+        array.data.forEach((e) => handleExpr(array, e));
+    });
+    config.template.forEach((template) => {
+        template.data.forEach((e) => {
+            if (RefValueType.Hook === type) {
+                if (e.hook === id) {
+                    callback(template, (id) => (e.hook = id));
+                }
+            }
+            handleExpr(template, e.action);
+        });
+    });
 };

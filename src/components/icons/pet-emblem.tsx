@@ -1,5 +1,6 @@
 import { PetAvatarIcon } from "@/components/icons.tsx";
-import { cn } from "@/lib/utils.ts";
+import { iconConfig } from "@/components/icons/icon-config.ts";
+import { cn } from "@/lib/utils";
 
 const colors: Record<number, string[]> = {
     0: ["#33cc66", "#c9cbd8", "#9b6ec6"],
@@ -16,7 +17,7 @@ interface PetEmblemProps {
 
 export function PetEmblemIcon({ id, size = 32, className }: PetEmblemProps) {
     const color = colors[3] || colors[1];
-    id = id - 300000;
+    const monster = iconConfig.emblem2Monster[id];
     return (
         <div className={cn("relative", className)}>
             <svg width={size} height={size} viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
@@ -44,7 +45,7 @@ export function PetEmblemIcon({ id, size = 32, className }: PetEmblemProps) {
 
             <div className="absolute inset-0 flex items-center justify-center" style={{ width: size, height: size }}>
                 <div className="rounded-full overflow-hidden">
-                    <PetAvatarIcon id={id} size={size * 0.55} />
+                    <PetAvatarIcon id={monster} size={size * 0.55} />
                 </div>
             </div>
 

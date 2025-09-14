@@ -2,6 +2,7 @@ import {
     ConfigSchema,
     Effect,
     Effects,
+    Expr,
     ExprValue,
     MainConfig,
     Monster,
@@ -13,7 +14,7 @@ import {
 import { DataHeader, DataType, MonsterSkillDataHeaders, RefValueType } from "@/config/config-table";
 
 export { ConfigSchema, DataType, MainConfig, MonsterSkillDataHeaders, RefValueType };
-export type { DataHeader, Effect, Effects, ExprValue, Monster, NamedId, RefValue, TemplateData, Value };
+export type { DataHeader, Effect, Effects, Expr, ExprValue, Monster, NamedId, RefValue, TemplateData, Value };
 
 export const RefValueSchema = {
     [RefValueType.Monster]: ConfigSchema.Monster,
@@ -345,6 +346,12 @@ export const RefValueHeaders = {
             key: "value",
             type: DataType.String,
         },
+        {
+            key: "counter",
+            type: DataType.RefCounter,
+            accessorKey: "id",
+            displayOnly: true,
+        },
     ],
     [RefValueType.RawOrder]: [
         {
@@ -363,6 +370,12 @@ export const RefValueHeaders = {
             key: "value",
             type: DataType.Number,
         },
+        {
+            key: "counter",
+            type: DataType.RefCounter,
+            accessorKey: "id",
+            displayOnly: true,
+        },
     ],
     [RefValueType.RawExpr]: [
         {
@@ -379,7 +392,13 @@ export const RefValueHeaders = {
         },
         {
             key: "value",
-            type: DataType.String,
+            type: DataType.RawExpr,
+        },
+        {
+            key: "counter",
+            type: DataType.RefCounter,
+            accessorKey: "id",
+            displayOnly: true,
         },
     ],
     [RefValueType.Value]: [
@@ -397,7 +416,7 @@ export const RefValueHeaders = {
         },
         {
             key: "expr",
-            type: DataType.String,
+            type: DataType.RawExpr,
         },
         {
             key: "counter",
@@ -421,7 +440,7 @@ export const RefValueHeaders = {
         },
         {
             key: "expr",
-            type: DataType.String,
+            type: DataType.RawExpr,
         },
         {
             key: "counter",
@@ -445,7 +464,7 @@ export const RefValueHeaders = {
         },
         {
             key: "expr",
-            type: DataType.String,
+            type: DataType.RawExpr,
         },
         {
             key: "counter",
@@ -477,7 +496,7 @@ export const RefValueHeaders = {
         },
         {
             key: "expr",
-            type: DataType.String,
+            type: DataType.RawExpr,
         },
         {
             key: "counter",

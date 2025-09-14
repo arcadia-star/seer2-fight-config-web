@@ -15,20 +15,24 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button.tsx";
 import { Card, CardContent } from "@/components/ui/card";
 import {
     Dialog,
+    DialogClose,
     DialogContent,
     DialogDescription,
+    DialogFooter,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { ScrollArea } from "@/components/ui/scroll-area.tsx";
 import { Tabs, TabsContent, TabsList } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { DataHeader, Monster, MonsterSkillDataHeaders, NamedId, RefValueSchema, RefValueType } from "@/config/base";
-import { queryMonsterChains, queryNameById, queryNamedId, queryNamedIdList } from "@/config/config";
+import { queryMonsterChains, queryNameById, queryNamedId, queryNamedIdList, refCounter } from "@/config/config";
 import { useConfigStore } from "@/store/configStore";
 import { useTableStore } from "@/store/tableStore";
 import { TabsTrigger } from "@radix-ui/react-tabs";
@@ -97,7 +101,8 @@ function TypedDataTable<TData extends NamedId>({ type, headers, data }: DataTabl
     const [rowData4Edit, setRowData4Edit] = useState<{ data: TData; update: boolean }>();
     const [rowData4EditId, setRowData4EditId] = useState<{ data?: TData; id: number }>({ data: undefined, id: 0 });
     const [rowData4Monster, setRowData4Monster] = useState<Monster>();
-    const [rowData4Json, setRowData4Json] = useState<TData>();
+    const [rowData4Json, setRowData4Json] = useState<{ data: TData; edit: boolean; value?: string }>();
+    const [rowData4Ref, setRowData4Ref] = useState<{ data: TData }>();
 
     const monsterChains = rowData4Monster ? queryMonsterChains(config, rowData4Monster.id) : [];
 
@@ -170,7 +175,25 @@ function TypedDataTable<TData extends NamedId>({ type, headers, data }: DataTabl
                             View Json
                         </>
                     ),
-                    onClick: setRowData4Json,
+                    onClick: (data: TData) => setRowData4Json({ data, edit: false }),
+                },
+                {
+                    node: () => (
+                        <>
+                            <Star />
+                            Edit Json
+                        </>
+                    ),
+                    onClick: (data: TData) => setRowData4Json({ data, edit: true }),
+                },
+                {
+                    node: () => (
+                        <>
+                            <Star />
+                            View Ref
+                        </>
+                    ),
+                    onClick: (data: TData) => setRowData4Ref({ data }),
                 },
             ].filter((e) => !e.hidden),
         },
@@ -272,9 +295,9 @@ function TypedDataTable<TData extends NamedId>({ type, headers, data }: DataTabl
                                 }
                             />
                             old:
-                            <Input value={queryNameById(config, rowData4EditId.data?.id ?? 0, type)} readOnly={true} />
+                            <Input value={queryNameById(config, type, rowData4EditId.data?.id ?? 0)} readOnly={true} />
                             new:
-                            <Input value={queryNameById(config, rowData4EditId?.id, type)} readOnly={true} />
+                            <Input value={queryNameById(config, type, rowData4EditId?.id)} readOnly={true} />
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
@@ -285,7 +308,7 @@ function TypedDataTable<TData extends NamedId>({ type, headers, data }: DataTabl
                                     rowData4EditId.data?.id &&
                                     rowData4EditId.id &&
                                     rowData4EditId.data?.id !== rowData4EditId.id &&
-                                    !queryNamedId(config, rowData4EditId.id, type)
+                                    !queryNamedId(config, type, rowData4EditId.id)
                                 )
                             }
                             onClick={() => {
@@ -322,7 +345,54 @@ function TypedDataTable<TData extends NamedId>({ type, headers, data }: DataTabl
                         <DialogTitle></DialogTitle>
                         <DialogDescription></DialogDescription>
                     </DialogHeader>
-                    <Textarea defaultValue={JSON.stringify(rowData4Json, null, 2)} readOnly />
+                    <ScrollArea className="max-h-[80vh] rounded-md border">
+                        <Textarea
+                            defaultValue={JSON.stringify(rowData4Json?.data, null, 2)}
+                            onChange={(e) => {
+                                if (rowData4Json) {
+                                    setRowData4Json({ ...rowData4Json, value: e.target.value });
+                                }
+                            }}
+                            readOnly={!(rowData4Json?.edit ?? false)}
+                        />
+                    </ScrollArea>
+                    {rowData4Json?.edit && (
+                        <DialogFooter>
+                            <DialogClose asChild>
+                                <Button variant="outline">Cancel</Button>
+                            </DialogClose>
+                            <Button
+                                type="submit"
+                                disabled={!rowData4Json?.value}
+                                onClick={() => {
+                                    const data = JSON.parse(rowData4Json?.value ?? "") as NamedId;
+                                    updateConfigItem({ type, data });
+                                    setRowData4Json(undefined);
+                                }}
+                            >
+                                Save changes
+                            </Button>
+                        </DialogFooter>
+                    )}
+                </DialogContent>
+            </Dialog>
+            <Dialog open={!!rowData4Ref} onOpenChange={(e) => !e && setRowData4Ref(undefined)}>
+                <DialogTrigger asChild></DialogTrigger>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle></DialogTitle>
+                        <DialogDescription></DialogDescription>
+                    </DialogHeader>
+                    <ScrollArea className="max-h-[80vh] rounded-md border">
+                        <Textarea
+                            defaultValue={JSON.stringify(
+                                refCounter(config.main, type, rowData4Ref?.data.id ?? 0).map((e) => e.name),
+                                null,
+                                2,
+                            )}
+                            readOnly
+                        />
+                    </ScrollArea>
                 </DialogContent>
             </Dialog>
         </div>

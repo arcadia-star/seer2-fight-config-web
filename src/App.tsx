@@ -8,7 +8,6 @@ import { useConfigStore } from "@/store/configStore";
 function App() {
     const refValueTab = useCacheStore((state) => state.refValueTab);
     const config = useConfigStore((state) => state.config);
-
     return (
         <div>
             <AppMenubar />

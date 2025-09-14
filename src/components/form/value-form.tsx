@@ -5,19 +5,12 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { ExprValue, RefValue, RefValueType, Value } from "@/config/base";
+import { Expr, RefValueType, Value } from "@/config/base";
+import { ArgNameIds, ArgVars } from "@/config/compiler";
 import { DataConfig, queryNameById, queryNamedIdList, ValueEnumType } from "@/config/config";
-import { argVars } from "@/config/hca-utils";
+import { field, fieldSet } from "@/lib/utils.ts";
 import { X } from "lucide-react";
-import { useEffect, useState } from "react";
-
-const ValueType = {
-    raw: "raw",
-    expr: "expr",
-    ref: "ref",
-    arg: "arg",
-};
-const ValueEnum = "enum";
+import React, { useEffect, useState } from "react";
 
 function buildValueExprArgs(fmt: string) {
     if (!fmt) {
@@ -32,32 +25,67 @@ function buildValueRefArgs(type: RefValueType, id: number, config: DataConfig) {
     if (!id) {
         return [];
     }
-    const vars = argVars;
-    const name = queryNameById(config, id, type);
+    const vars = ArgVars;
+    const name = queryNameById(config, type, id);
     const idx = vars.findIndex((e) => !name.includes(e));
     return vars.slice(0, idx >= 0 ? idx : vars.length);
 }
 
-function adjustArgsLength<T>(value: T, onValueChange: (t: T) => void, args: Value[], length: number) {
+function adjustArgsLength<
+    T,
+    F extends {
+        args: T[];
+    },
+>(value: F, onValueChange: (t: F) => void, args: T[], length: number) {
     if (args.length > length) {
         onValueChange({ ...value, args: args.slice(0, length) });
     } else if (args.length < length) {
         const array = [];
         const len = length - args.length;
         for (let i = 0; i < len; i++) {
-            array.push({});
+            array.push({} as T);
         }
         onValueChange({ ...value, args: args.concat(array) });
     }
 }
 
-interface ArgValueProps {
-    value: Value;
-    onValueChange: (value: Value) => void;
+type ValueProps<T> = {
+    value: T;
+    onValueChange: (value: T) => void;
     config: DataConfig;
+};
+
+type ValueGecBase<T> = {
+    raw?: string | null | undefined;
+    expr?: ExprValueGec<T> | null | undefined;
+    ref?: RefValueGec<T> | null | undefined;
+};
+
+interface ValueGecFormProps<T> extends ValueProps<T> {
+    ArgComponent: React.ComponentType<ValueProps<T>>;
+    type: RefValueType;
 }
 
-export function ValueForm({ value, onValueChange, config }: ArgValueProps) {
+function ValueGecForm<T extends ValueGecBase<T>>({
+    value,
+    onValueChange,
+    config,
+    ArgComponent,
+    type,
+}: ValueGecFormProps<T>) {
+    const ValueType = {
+        raw: "raw",
+        expr: "expr",
+        ref: "ref",
+    };
+    const ValueTypeExt = {
+        arg: "arg",
+    };
+    if (type === RefValueType.RawExpr) {
+        fieldSet(ValueType, ValueTypeExt.arg, ValueTypeExt.arg);
+    }
+    const ValueEnum = "enum";
+
     const [valueType, setValueType] = useState(ValueType.raw);
     const [valueEnumType, setValueEnumType] = useState("buff");
 
@@ -74,17 +102,17 @@ export function ValueForm({ value, onValueChange, config }: ArgValueProps) {
         if (value.ref?.id) {
             return ValueType.ref;
         }
-        if (value.arg) {
-            return ValueType.arg;
+        if (field(value, ValueTypeExt.arg)) {
+            return field(ValueType, ValueTypeExt.arg);
         }
         for (const { key } of ValueEnumType) {
-            if ((value as Record<string, number>)[key]) {
+            if (field(value, key)) {
                 return key;
             }
         }
         return null;
     })(value);
-    const valueEnumType0 = ValueEnumType.find((e) => (value as Record<string, number>)[e.key])?.key;
+    const valueEnumType0 = ValueEnumType.find((e) => field(value, e.key))?.key;
     const valueEnumRadioDisplay = valueEnumType0 || valueEnumType;
     const valueRadioDisplay = valueEnumType0 ? ValueEnum : valueType0 || valueType;
     const valueTab = valueType0 || (valueType === ValueEnum ? valueEnumRadioDisplay : valueType);
@@ -119,7 +147,9 @@ export function ValueForm({ value, onValueChange, config }: ArgValueProps) {
                                 <SelectContent>
                                     <SelectGroup>
                                         {ValueEnumType.map((e) => (
-                                            <SelectItem value={e.key}>{e.key}</SelectItem>
+                                            <SelectItem key={e.key} value={e.key}>
+                                                {e.key}
+                                            </SelectItem>
                                         ))}
                                     </SelectGroup>
                                 </SelectContent>
@@ -136,7 +166,7 @@ export function ValueForm({ value, onValueChange, config }: ArgValueProps) {
                                 className="rounded-full"
                                 size="icon"
                                 onClick={() => {
-                                    onValueChange({});
+                                    onValueChange({} as T);
                                     setValueType(ValueType.raw);
                                 }}
                             >
@@ -159,29 +189,31 @@ export function ValueForm({ value, onValueChange, config }: ArgValueProps) {
                         className="w-[380px]"
                         placeholder="raw value expr"
                         value={value.raw ?? ""}
-                        onChange={(e) => onValueChange({ raw: e.target.value.trim() })}
+                        onChange={(e) => onValueChange({ raw: e.target.value.trim() } as T)}
                     />
                 )}
                 {valueTab === ValueType.expr && (
-                    <ExprValueFrom
+                    <ExprValueGecFrom
                         value={value.expr ?? { fmt: "", args: [] }}
-                        onValueChange={(expr) => onValueChange({ expr })}
+                        onValueChange={(expr) => onValueChange({ expr } as T)}
                         config={config}
+                        ArgComponent={ArgComponent}
                     />
                 )}
                 {valueTab === ValueType.ref && (
-                    <RefValueForm
+                    <RefValueGecForm
                         value={value.ref ?? { id: 0, args: [] }}
-                        onValueChange={(ref) => onValueChange({ ref })}
+                        onValueChange={(ref) => onValueChange({ ref } as T)}
                         config={config}
-                        type={RefValueType.Value}
-                    ></RefValueForm>
+                        type={type}
+                        ArgComponent={ArgComponent}
+                    ></RefValueGecForm>
                 )}
-                {valueTab === ValueType.arg && (
+                {valueTab === ValueTypeExt.arg && (
                     <SelectForm
-                        options={argVars.map((e, idx) => ({ id: idx + 1, name: e, tips: "" }))}
-                        value={value.arg ?? 0}
-                        onValueChange={(arg) => onValueChange({ arg })}
+                        options={ArgNameIds}
+                        value={field(value, ValueTypeExt.arg) ?? 0}
+                        onValueChange={(arg) => onValueChange({ arg } as unknown as T)}
                     ></SelectForm>
                 )}
                 {ValueEnumType.map(
@@ -190,8 +222,8 @@ export function ValueForm({ value, onValueChange, config }: ArgValueProps) {
                             <SelectForm
                                 key={key}
                                 options={queryNamedIdList(config, type)}
-                                value={(value as Record<string, number>)[key]}
-                                onValueChange={(e) => onValueChange({ [key]: e })}
+                                value={field(value, key)}
+                                onValueChange={(e) => onValueChange({ [key]: e } as unknown as T)}
                                 placeholder={key}
                             />
                         ),
@@ -201,13 +233,16 @@ export function ValueForm({ value, onValueChange, config }: ArgValueProps) {
     );
 }
 
-interface ExprValueProps {
-    value: ExprValue;
-    onValueChange: (value: ExprValue) => void;
-    config: DataConfig;
+type ExprValueGec<T> = {
+    fmt: string;
+    args: T[];
+};
+
+interface ExprValueGecProps<T> extends ValueProps<ExprValueGec<T>> {
+    ArgComponent: React.ComponentType<ValueProps<T>>;
 }
 
-function ExprValueFrom({ value, onValueChange, config }: ExprValueProps) {
+function ExprValueGecFrom<T>({ value, onValueChange, config, ArgComponent }: ExprValueGecProps<T>) {
     const fmt = value.fmt;
     const args = value.args;
     const params = buildValueExprArgs(fmt);
@@ -225,7 +260,7 @@ function ExprValueFrom({ value, onValueChange, config }: ExprValueProps) {
             {args.map((e, idx) => (
                 <div key={idx} className="ml-[60px]">
                     <Label></Label>
-                    <ValueForm
+                    <ArgComponent
                         value={e}
                         onValueChange={(v) =>
                             onValueChange({
@@ -234,21 +269,24 @@ function ExprValueFrom({ value, onValueChange, config }: ExprValueProps) {
                             })
                         }
                         config={config}
-                    ></ValueForm>
+                    />
                 </div>
             ))}
         </div>
     );
 }
 
-interface RefValueProps {
-    value: RefValue;
-    onValueChange: (value: RefValue) => void;
+type RefValueGec<T> = {
+    id: number;
+    args: T[];
+};
+
+interface RefValueGecProps<T> extends ValueProps<RefValueGec<T>> {
     type: RefValueType;
-    config: DataConfig;
+    ArgComponent: React.ComponentType<ValueProps<T>>;
 }
 
-export function RefValueForm({ value, onValueChange, type, config }: RefValueProps) {
+function RefValueGecForm<T>({ value, onValueChange, config, type, ArgComponent }: RefValueGecProps<T>) {
     const id = value.id;
     const args = value.args;
     const params = buildValueRefArgs(type, id, config);
@@ -265,7 +303,7 @@ export function RefValueForm({ value, onValueChange, type, config }: RefValuePro
             {args.map((e, idx) => (
                 <div key={idx} className="ml-[60px]">
                     <Label>{params[idx]}</Label>
-                    <ValueForm
+                    <ArgComponent
                         value={e}
                         onValueChange={(v) =>
                             onValueChange({
@@ -274,9 +312,41 @@ export function RefValueForm({ value, onValueChange, type, config }: RefValuePro
                             })
                         }
                         config={config}
-                    ></ValueForm>
+                    />
                 </div>
             ))}
         </div>
     );
+}
+
+export function ValueForm({ value, onValueChange, config }: ValueProps<Value>) {
+    return (
+        <ValueGecForm
+            value={value}
+            onValueChange={onValueChange}
+            config={config}
+            ArgComponent={ValueForm}
+            type={RefValueType.Value}
+        />
+    );
+}
+
+export function ExprForm({ value, onValueChange, config }: ValueProps<Expr>) {
+    return (
+        <ValueGecForm
+            value={value}
+            onValueChange={onValueChange}
+            config={config}
+            ArgComponent={ExprForm}
+            type={RefValueType.RawExpr}
+        />
+    );
+}
+
+interface RefValueProps extends ValueProps<RefValueGec<Value>> {
+    type: RefValueType;
+}
+
+export function RefValueForm(props: RefValueProps) {
+    return RefValueGecForm({ ArgComponent: ValueForm, ...props });
 }
